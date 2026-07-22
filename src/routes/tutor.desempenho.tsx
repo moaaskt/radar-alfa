@@ -46,18 +46,13 @@ function DesempenhoPage() {
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "hsl(var(--card))",
+                    backgroundColor: "#ffffff",
                     borderRadius: "12px",
-                    borderColor: "hsl(var(--border))",
-                    color: "hsl(var(--foreground))",
+                    borderColor: "#e9e5f0",
+                    color: "#2d1b4e",
                   }}
                 />
-                <Bar
-                  dataKey="pct"
-                  name="Aproveitamento (%)"
-                  fill="hsl(var(--primary))"
-                  radius={[8, 8, 0, 0]}
-                />
+                <Bar dataKey="pct" name="Aproveitamento (%)" fill="#7C3AED" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
