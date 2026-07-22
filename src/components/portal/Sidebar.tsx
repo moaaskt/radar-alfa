@@ -97,7 +97,7 @@ export function PortalSidebar({ variant }: { variant: "coordenador" | "aluno" })
 
 function getMobileHeaderInfo(pathname: string) {
   const normalized = pathname.replace(/\/$/, "");
-  
+
   const historicoMatch = normalized.match(/^\/radar\/aluno\/([^/]+)\/historico$/);
   if (historicoMatch) {
     const studentId = historicoMatch[1];
@@ -158,13 +158,17 @@ export function PortalBottomNav({ variant }: { variant: "coordenador" | "aluno" 
     return (
       <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-lg border-t border-border shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex items-center justify-around z-50 px-2">
         {alunoItems.map((it, i) => {
-          const isActive = it.exact ? normalized === it.to : normalized === it.to || normalized.startsWith(it.to + "/");
+          const isActive = it.exact
+            ? normalized === it.to
+            : normalized === it.to || normalized.startsWith(it.to + "/");
           return (
             <Link
               key={i}
               to={it.to}
               className={`flex flex-col items-center justify-center flex-1 py-1 gap-1 text-center transition-colors ${
-                isActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+                isActive
+                  ? "text-primary font-medium"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               <it.icon className="h-5 w-5" />
@@ -196,7 +200,9 @@ export function PortalBottomNav({ variant }: { variant: "coordenador" | "aluno" 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-lg border-t border-border shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex items-center justify-around z-50 px-2">
       {tabItems.map((it, i) => {
-        const isActive = it.exact ? normalized === it.to : normalized === it.to || normalized.startsWith(it.to + "/");
+        const isActive = it.exact
+          ? normalized === it.to
+          : normalized === it.to || normalized.startsWith(it.to + "/");
         return (
           <Link
             key={i}
@@ -216,7 +222,9 @@ export function PortalBottomNav({ variant }: { variant: "coordenador" | "aluno" 
         <button
           onClick={() => setMenuMaisOpen(!menuMaisOpen)}
           className={`flex flex-col items-center justify-center w-full py-1 gap-1 text-center transition-colors ${
-            menuMaisOpen || isMoreActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            menuMaisOpen || isMoreActive
+              ? "text-primary font-medium"
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
           <MoreHorizontal className="h-5 w-5" />
@@ -289,11 +297,7 @@ export function PortalShell({
       )}
 
       {/* Main content wrapper */}
-      <main
-        className={`flex-1 min-w-0 pb-20 md:pb-0 ${
-          headerInfo ? "pt-14 md:pt-0" : "pt-0"
-        }`}
-      >
+      <main className={`flex-1 min-w-0 pb-20 md:pb-0 ${headerInfo ? "pt-14 md:pt-0" : "pt-0"}`}>
         {children}
       </main>
 
