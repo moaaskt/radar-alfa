@@ -28,7 +28,10 @@ export const Route = createFileRoute("/radar/aluno/$id")({
 function AlunoPage() {
   const aluno = Route.useLoaderData() as import("@/lib/portal-data").Aluno;
   const [nota, setNota] = useState("");
-  const [checks, setChecks] = useState<Record<string, boolean>>({});
+  const [checks, setChecks] = useLocalStorage<Record<string, boolean>>(
+    `atlas_coordenador_sugestoes_${aluno.id}`,
+    {},
+  );
   const [, setExtras] = useLocalStorage<Intervencao[]>(
     `atlas_coordenador_intervencoes_${aluno.id}`,
     [],

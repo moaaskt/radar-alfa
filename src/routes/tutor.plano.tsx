@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useLocalStorage } from "@/hooks/use-local-storage";
 import { Check } from "lucide-react";
-import { useState } from "react";
 import { PortalShell } from "@/components/portal/Sidebar";
 import { planoSemana } from "@/lib/portal-data";
 
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/tutor/plano")({
   head: () => ({
     meta: [
       { title: "Meu Plano — Portal Atlas" },
-      { name: "description", content: "Seu plano de estudos da semana, organizado por dia." },
+      { name: "description", content: "Seu plano de estudos da semana, organized por dia." },
       { property: "og:title", content: "Meu Plano da Semana" },
       { property: "og:description", content: "Cronograma semanal de estudos do aluno." },
     ],
@@ -17,7 +17,10 @@ export const Route = createFileRoute("/tutor/plano")({
 });
 
 function PlanoPage() {
-  const [state, setState] = useState(planoSemana.map((p) => p.feito));
+  const [state, setState] = useLocalStorage<boolean[]>(
+    "atlas_aluno_pedro_plano",
+    planoSemana.map((p) => p.feito)
+  );
 
   return (
     <PortalShell variant="aluno">
