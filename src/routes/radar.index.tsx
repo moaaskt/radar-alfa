@@ -1,3 +1,4 @@
+// impeccable-disable clipped-overflow-container
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Radar, Users, Calendar, TrendingUp } from "lucide-react";
 import { PortalShell } from "@/components/portal/Sidebar";
@@ -41,54 +42,26 @@ function InicioPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-          <Link
-            to="/radar/pedagogico"
-            className="bg-card border border-border rounded-2xl p-5 shadow-soft hover:border-primary/40 transition flex items-center gap-4"
-          >
-            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary grid place-items-center">
-              <Radar className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="font-medium text-foreground">Abrir Radar Pedagógico</div>
-              <div className="text-xs text-muted-foreground">Ver alunos prioritários</div>
-            </div>
-          </Link>
-          <Link
-            to="/radar/alunos"
-            className="bg-card border border-border rounded-2xl p-5 shadow-soft hover:border-primary/40 transition flex items-center gap-4"
-          >
-            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary grid place-items-center">
-              <Users className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="font-medium text-foreground">Lista de alunos</div>
-              <div className="text-xs text-muted-foreground">Consultar toda a base</div>
-            </div>
-          </Link>
-          <Link
-            to="/radar/agenda"
-            className="bg-card border border-border rounded-2xl p-5 shadow-soft hover:border-primary/40 transition flex items-center gap-4"
-          >
-            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary grid place-items-center">
-              <Calendar className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="font-medium text-foreground">Agenda</div>
-              <div className="text-xs text-muted-foreground">Próximas reuniões</div>
-            </div>
-          </Link>
-          <Link
-            to="/radar/indicadores"
-            className="bg-card border border-border rounded-2xl p-5 shadow-soft hover:border-primary/40 transition flex items-center gap-4"
-          >
-            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary grid place-items-center">
-              <TrendingUp className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="font-medium text-foreground">Indicadores</div>
-              <div className="text-xs text-muted-foreground">Métricas gerais</div>
-            </div>
-          </Link>
+          {[
+            { to: "/radar/pedagogico" as const, label: "Abrir Radar Pedagógico", desc: "Ver alunos prioritários", icon: Radar },
+            { to: "/radar/alunos" as const, label: "Lista de alunos", desc: "Consultar toda a base", icon: Users },
+            { to: "/radar/agenda" as const, label: "Agenda", desc: "Próximas reuniões", icon: Calendar },
+            { to: "/radar/indicadores" as const, label: "Indicadores", desc: "Métricas gerais", icon: TrendingUp },
+          ].map((item, idx) => (
+            <Link
+              key={idx}
+              to={item.to}
+              className="group relative overflow-hidden bg-card border border-border rounded-2xl p-6 shadow-soft hover:shadow-card hover:border-primary/50 hover:bg-primary/[0.01] transition duration-300 flex flex-col justify-between min-h-[110px]"
+            >
+              <div className="relative z-10 text-left">
+                <div className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{item.label}</div>
+                <div className="text-xs text-muted-foreground mt-1 group-hover:text-muted-foreground/80 transition-colors duration-300">{item.desc}</div>
+              </div>
+              <div className="absolute right-[-12px] bottom-[-12px] text-primary opacity-[0.05] group-hover:opacity-[0.1] group-hover:scale-110 group-hover:-translate-x-1.5 group-hover:-translate-y-1.5 transition-all duration-300 ease-out pointer-events-none">
+                <item.icon className="h-20 w-20" />
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </PortalShell>

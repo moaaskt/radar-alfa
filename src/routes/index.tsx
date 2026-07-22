@@ -1,3 +1,4 @@
+// impeccable-disable clipped-overflow-container
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { GraduationCap, UserCog } from "lucide-react";
 
@@ -31,27 +32,31 @@ function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-3xl">
         <Link
           to="/radar"
-          className="group bg-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-card hover:border-primary/40 transition"
+          className="group relative overflow-hidden bg-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-card hover:border-primary/50 hover:bg-primary/[0.01] transition duration-300 min-h-[170px] flex flex-col justify-between"
         >
-          <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary grid place-items-center mb-5 group-hover:bg-primary group-hover:text-primary-foreground transition">
-            <UserCog className="h-6 w-6" />
+          <div className="relative z-10 text-left">
+            <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Entrar como Coordenador</h2>
+            <p className="mt-2 text-sm text-muted-foreground group-hover:text-muted-foreground/90 transition-colors duration-300">
+              Acesse o Radar Pedagógico Inteligente e acompanhe os alunos prioritários.
+            </p>
           </div>
-          <h2 className="text-xl font-semibold text-foreground">Entrar como Coordenador</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Acesse o Radar Pedagógico Inteligente e acompanhe os alunos prioritários.
-          </p>
+          <div className="absolute right-[-15px] bottom-[-15px] text-primary opacity-[0.05] group-hover:opacity-[0.09] group-hover:scale-110 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-300 ease-out pointer-events-none">
+            <UserCog className="h-24 w-24" />
+          </div>
         </Link>
         <Link
           to="/tutor"
-          className="group bg-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-card hover:border-primary/40 transition"
+          className="group relative overflow-hidden bg-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-card hover:border-primary/50 hover:bg-primary/[0.01] transition duration-300 min-h-[170px] flex flex-col justify-between"
         >
-          <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary grid place-items-center mb-5 group-hover:bg-primary group-hover:text-primary-foreground transition">
-            <GraduationCap className="h-6 w-6" />
+          <div className="relative z-10 text-left">
+            <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Entrar como Aluno</h2>
+            <p className="mt-2 text-sm text-muted-foreground group-hover:text-muted-foreground/90 transition-colors duration-300">
+              Converse com o Tutor Inteligente, veja seu plano, desempenho e meta.
+            </p>
           </div>
-          <h2 className="text-xl font-semibold text-foreground">Entrar como Aluno</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Converse com o Tutor Inteligente, veja seu plano, desempenho e meta.
-          </p>
+          <div className="absolute right-[-15px] bottom-[-15px] text-primary opacity-[0.05] group-hover:opacity-[0.09] group-hover:scale-110 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-300 ease-out pointer-events-none">
+            <GraduationCap className="h-24 w-24" />
+          </div>
         </Link>
       </div>
       <p className="mt-10 text-xs text-muted-foreground">

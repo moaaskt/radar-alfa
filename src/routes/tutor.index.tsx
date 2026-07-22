@@ -1,3 +1,4 @@
+// impeccable-disable clipped-overflow-container
 import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen, BarChart3, FileText, Target, Send, Trash2 } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
@@ -99,12 +100,15 @@ function TutorPage() {
             <Link
               key={s.label}
               to={s.to}
-              className="group bg-card border border-border rounded-2xl p-4 shadow-soft hover:shadow-card hover:border-primary/40 transition text-center"
+              className="group relative overflow-hidden bg-card border border-border rounded-2xl p-5 shadow-soft hover:shadow-card hover:border-primary/50 hover:bg-primary/[0.01] transition duration-300 flex flex-col justify-between min-h-[100px]"
             >
-              <div className="mx-auto h-10 w-10 rounded-xl bg-primary/10 text-primary grid place-items-center mb-2 group-hover:bg-primary group-hover:text-primary-foreground transition">
-                <s.icon className="h-5 w-5" />
+              <div className="relative z-10 text-left">
+                <div className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{s.label}</div>
+                <div className="text-[11px] text-muted-foreground mt-1 group-hover:text-muted-foreground/80 transition-colors duration-300">Acessar</div>
               </div>
-              <div className="text-sm font-medium text-foreground">{s.label}</div>
+              <div className="absolute right-[-10px] bottom-[-10px] text-primary opacity-[0.05] group-hover:opacity-[0.1] group-hover:scale-110 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-300 ease-out pointer-events-none">
+                <s.icon className="h-16 w-16" />
+              </div>
             </Link>
           ))}
         </div>

@@ -172,7 +172,7 @@ export function PortalBottomNav({ variant }: { variant: "coordenador" | "aluno" 
               }`}
             >
               <it.icon className="h-5 w-5" />
-              <span className="text-[10px] tracking-tight">{it.label}</span>
+              <span className="text-xs tracking-tight">{it.label}</span>
             </Link>
           );
         })}
@@ -212,7 +212,7 @@ export function PortalBottomNav({ variant }: { variant: "coordenador" | "aluno" 
             }`}
           >
             <it.icon className="h-5 w-5" />
-            <span className="text-[10px] tracking-tight">{it.label}</span>
+            <span className="text-xs tracking-tight">{it.label}</span>
           </Link>
         );
       })}
@@ -228,7 +228,7 @@ export function PortalBottomNav({ variant }: { variant: "coordenador" | "aluno" 
           }`}
         >
           <MoreHorizontal className="h-5 w-5" />
-          <span className="text-[10px] tracking-tight">Mais</span>
+          <span className="text-xs tracking-tight">Mais</span>
         </button>
 
         {/* Popover / Overlay style for remaining items */}
@@ -281,23 +281,50 @@ export function PortalShell({
       {/* Desktop Sidebar */}
       <PortalSidebar variant={variant} />
 
-      {/* Mobile Top Header (only on child screens) */}
-      {headerInfo && (
-        <header className="md:hidden fixed top-0 left-0 right-0 h-14 bg-background/80 backdrop-blur-lg border-b border-border shadow-sm flex items-center px-4 z-40">
-          <Link
-            to={headerInfo.backTo}
-            className="h-9 w-9 rounded-lg flex items-center justify-center bg-primary-soft text-primary hover:bg-primary-soft/80 active:scale-95 transition-all mr-3"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </Link>
-          <span className="font-semibold text-foreground text-sm tracking-tight">
-            {headerInfo.title}
-          </span>
+      {/* Mobile Top Header */}
+      {(variant === "aluno" || headerInfo) && (
+        <header className="md:hidden fixed top-0 left-0 right-0 h-14 bg-background/80 backdrop-blur-lg border-b border-border shadow-sm flex items-center justify-between px-4 z-40">
+          <div className="flex items-center min-w-0">
+            {headerInfo ? (
+              <>
+                <Link
+                  to={headerInfo.backTo}
+                  className="h-9 w-9 rounded-lg flex items-center justify-center bg-primary-soft text-primary hover:bg-primary-soft/80 active:scale-95 transition-all mr-3 shrink-0"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </Link>
+                <span className="font-semibold text-foreground text-sm tracking-tight truncate">
+                  {headerInfo.title}
+                </span>
+              </>
+            ) : (
+              <Link to="/" className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-lg bg-primary text-primary-foreground grid place-items-center font-bold text-sm shrink-0">
+                  A
+                </div>
+                <div className="min-w-0">
+                  <div className="font-semibold text-sm leading-tight text-foreground truncate">Portal Atlas</div>
+                  <div className="text-xs text-muted-foreground leading-none mt-0.5">
+                    Aluno
+                  </div>
+                </div>
+              </Link>
+            )}
+          </div>
+          {variant === "aluno" && (
+            <Link
+              to="/"
+              className="h-9 w-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted active:scale-95 transition-all shrink-0 ml-2"
+              title="Sair"
+            >
+              <LogOut className="h-5 w-5" />
+            </Link>
+          )}
         </header>
       )}
 
       {/* Main content wrapper */}
-      <main className={`flex-1 min-w-0 pb-20 md:pb-0 ${headerInfo ? "pt-14 md:pt-0" : "pt-0"}`}>
+      <main className={`flex-1 min-w-0 pb-20 md:pb-0 ${(variant === "aluno" || headerInfo) ? "pt-14 md:pt-0" : "pt-0"}`}>
         {children}
       </main>
 
