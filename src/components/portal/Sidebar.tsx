@@ -11,8 +11,12 @@ import {
   BookOpen,
   BarChart3,
   Target,
+  MoreHorizontal,
+  ChevronLeft,
 } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import type { ComponentType } from "react";
+import { alunos } from "@/lib/portal-data";
 
 type Item = {
   to: string;
@@ -42,7 +46,7 @@ export function PortalSidebar({ variant }: { variant: "coordenador" | "aluno" })
   const items = variant === "coordenador" ? coordItems : alunoItems;
 
   return (
-    <aside className="hidden md:flex w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground min-h-screen">
+    <aside className="hidden md:flex w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground min-h-screen border-r border-sidebar-border">
       <div className="px-6 py-6 border-b border-sidebar-border">
         <Link to="/" className="flex items-center gap-2">
           <div className="h-9 w-9 rounded-lg bg-sidebar-primary text-sidebar-primary-foreground grid place-items-center font-bold">
@@ -91,6 +95,169 @@ export function PortalSidebar({ variant }: { variant: "coordenador" | "aluno" })
   );
 }
 
+function getMobileHeaderInfo(pathname: string) {
+  const normalized = pathname.replace(/\/$/, "");
+  
+  const historicoMatch = normalized.match(/^\/radar\/aluno\/([^/]+)\/historico$/);
+  if (historicoMatch) {
+    const studentId = historicoMatch[1];
+    const student = alunos.find((a) => a.id === studentId);
+    return {
+      title: student ? `${student.nome} (Histórico)` : "Histórico",
+      backTo: `/radar/aluno/${studentId}`,
+    };
+  }
+
+  const alunoMatch = normalized.match(/^\/radar\/aluno\/([^/]+)$/);
+  if (alunoMatch) {
+    const studentId = alunoMatch[1];
+    const student = alunos.find((a) => a.id === studentId);
+    return {
+      title: student ? student.nome : "Perfil do Aluno",
+      backTo: "/radar/pedagogico",
+    };
+  }
+
+  if (normalized === "/tutor/provas") {
+    return {
+      title: "Revisar Provas",
+      backTo: "/tutor",
+    };
+  }
+
+  return null;
+}
+
+export function PortalBottomNav({ variant }: { variant: "coordenador" | "aluno" }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [menuMaisOpen, setMenuMaisOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close "Mais" menu when pathname changes or user clicks outside
+  useEffect(() => {
+    setMenuMaisOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuMaisOpen(false);
+      }
+    }
+    if (menuMaisOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuMaisOpen]);
+
+  const normalized = pathname.replace(/\/$/, "") || "/";
+
+  if (variant === "aluno") {
+    return (
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-lg border-t border-border shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex items-center justify-around z-50 px-2">
+        {alunoItems.map((it, i) => {
+          const isActive = it.exact ? normalized === it.to : normalized === it.to || normalized.startsWith(it.to + "/");
+          return (
+            <Link
+              key={i}
+              to={it.to}
+              className={`flex flex-col items-center justify-center flex-1 py-1 gap-1 text-center transition-colors ${
+                isActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <it.icon className="h-5 w-5" />
+              <span className="text-[10px] tracking-tight">{it.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
+    );
+  }
+
+  // Coordinator: Início, Radar Pedagógico, Agenda, Indicadores + Mais (Alunos, Configurações, Sair)
+  const tabItems = [
+    coordItems[0], // Início
+    coordItems[2], // Radar Pedagógico
+    coordItems[3], // Agenda
+    coordItems[4], // Indicadores
+  ];
+
+  const moreItems = [
+    coordItems[1], // Alunos
+    coordItems[5], // Configurações
+  ];
+
+  const isMoreActive = moreItems.some((it) => {
+    return normalized === it.to || normalized.startsWith(it.to + "/");
+  });
+
+  return (
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-lg border-t border-border shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex items-center justify-around z-50 px-2">
+      {tabItems.map((it, i) => {
+        const isActive = it.exact ? normalized === it.to : normalized === it.to || normalized.startsWith(it.to + "/");
+        return (
+          <Link
+            key={i}
+            to={it.to}
+            className={`flex flex-col items-center justify-center flex-1 py-1 gap-1 text-center transition-colors ${
+              isActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <it.icon className="h-5 w-5" />
+            <span className="text-[10px] tracking-tight">{it.label}</span>
+          </Link>
+        );
+      })}
+
+      {/* "Mais" Menu Trigger */}
+      <div className="flex-1 relative flex flex-col items-center justify-center" ref={menuRef}>
+        <button
+          onClick={() => setMenuMaisOpen(!menuMaisOpen)}
+          className={`flex flex-col items-center justify-center w-full py-1 gap-1 text-center transition-colors ${
+            menuMaisOpen || isMoreActive ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <MoreHorizontal className="h-5 w-5" />
+          <span className="text-[10px] tracking-tight">Mais</span>
+        </button>
+
+        {/* Popover / Overlay style for remaining items */}
+        {menuMaisOpen && (
+          <div className="absolute bottom-[72px] right-2 w-48 bg-card border border-border rounded-2xl shadow-xl p-2 z-50 flex flex-col gap-1 animate-in slide-in-from-bottom-2 duration-150">
+            {moreItems.map((it, i) => {
+              const isActive = normalized === it.to || normalized.startsWith(it.to + "/");
+              return (
+                <Link
+                  key={i}
+                  to={it.to}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors ${
+                    isActive
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "text-foreground hover:bg-muted"
+                  }`}
+                >
+                  <it.icon className="h-4 w-4" />
+                  {it.label}
+                </Link>
+              );
+            })}
+            <hr className="border-border my-1" />
+            <Link
+              to="/"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-destructive hover:bg-destructive/10 transition-colors"
+            >
+              <LogOut className="h-4 w-4" />
+              Sair
+            </Link>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+}
+
 export function PortalShell({
   variant,
   children,
@@ -98,10 +265,40 @@ export function PortalShell({
   variant: "coordenador" | "aluno";
   children: React.ReactNode;
 }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const headerInfo = getMobileHeaderInfo(pathname);
+
   return (
-    <div className="min-h-screen flex w-full bg-background">
+    <div className="min-h-screen flex flex-col md:flex-row w-full bg-background">
+      {/* Desktop Sidebar */}
       <PortalSidebar variant={variant} />
-      <main className="flex-1 min-w-0">{children}</main>
+
+      {/* Mobile Top Header (only on child screens) */}
+      {headerInfo && (
+        <header className="md:hidden fixed top-0 left-0 right-0 h-14 bg-background/80 backdrop-blur-lg border-b border-border shadow-sm flex items-center px-4 z-40">
+          <Link
+            to={headerInfo.backTo}
+            className="h-9 w-9 rounded-lg flex items-center justify-center bg-primary-soft text-primary hover:bg-primary-soft/80 active:scale-95 transition-all mr-3"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Link>
+          <span className="font-semibold text-foreground text-sm tracking-tight">
+            {headerInfo.title}
+          </span>
+        </header>
+      )}
+
+      {/* Main content wrapper */}
+      <main
+        className={`flex-1 min-w-0 pb-20 md:pb-0 ${
+          headerInfo ? "pt-14 md:pt-0" : "pt-0"
+        }`}
+      >
+        {children}
+      </main>
+
+      {/* Mobile Bottom Tab Bar */}
+      <PortalBottomNav variant={variant} />
     </div>
   );
 }
