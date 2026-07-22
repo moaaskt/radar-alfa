@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BookOpen, BarChart3, FileText, Target, Send } from "lucide-react";
+import { BookOpen, BarChart3, FileText, Target, Send, Trash2 } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import { PortalShell } from "@/components/portal/Sidebar";
 import { Link } from "@tanstack/react-router";
@@ -98,24 +98,43 @@ function TutorPage() {
         </div>
 
         {messages.length > 0 && (
-          <div className="flex-1 bg-card border border-border rounded-2xl p-4 shadow-soft mb-4 space-y-3 overflow-y-auto max-h-[50vh]">
-            {messages.map((m, i) => (
-              <div
-                key={i}
-                className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
+          <div className="flex flex-col flex-1 bg-card border border-border rounded-2xl shadow-soft mb-4 overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-muted/40">
+              <span className="text-xs font-semibold text-foreground tracking-tight">
+                Histórico de conversa
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  if (window.confirm("Deseja realmente limpar toda a conversa?")) {
+                    setMessages([]);
+                  }
+                }}
+                className="h-8 w-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+                title="Limpar conversa"
               >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="flex-1 p-4 space-y-3 overflow-y-auto max-h-[45vh]">
+              {messages.map((m, i) => (
                 <div
-                  className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm ${
-                    m.role === "user"
-                      ? "bg-primary text-primary-foreground rounded-br-sm"
-                      : "bg-muted text-foreground rounded-bl-sm"
-                  }`}
+                  key={i}
+                  className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  {m.text}
+                  <div
+                    className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm ${
+                      m.role === "user"
+                        ? "bg-primary text-primary-foreground rounded-br-sm"
+                        : "bg-muted text-foreground rounded-bl-sm"
+                    }`}
+                  >
+                    {m.text}
+                  </div>
                 </div>
-              </div>
-            ))}
-            <div ref={endRef} />
+              ))}
+              <div ref={endRef} />
+            </div>
           </div>
         )}
 
