@@ -4,6 +4,18 @@ import { useRef, useEffect, useState } from "react";
 import { PortalShell } from "@/components/portal/Sidebar";
 import { Link } from "@tanstack/react-router";
 import { useLocalStorage } from "@/hooks/use-local-storage";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { buttonVariants } from "@/components/ui/button";
 
 export const Route = createFileRoute("/tutor/")({
   head: () => ({
@@ -103,18 +115,34 @@ function TutorPage() {
               <span className="text-xs font-semibold text-foreground tracking-tight">
                 Histórico de conversa
               </span>
-              <button
-                type="button"
-                onClick={() => {
-                  if (window.confirm("Deseja realmente limpar toda a conversa?")) {
-                    setMessages([]);
-                  }
-                }}
-                className="h-8 w-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
-                title="Limpar conversa"
-              >
-                <Trash2 className="h-4 w-4" />
-              </button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <button
+                    type="button"
+                    className="h-8 w-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+                    title="Limpar conversa"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Limpar conversa</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Deseja realmente limpar toda a conversa? Essa ação não pode ser desfeita.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => setMessages([])}
+                      className={buttonVariants({ variant: "destructive" })}
+                    >
+                      Limpar
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
             <div className="flex-1 p-4 space-y-3 overflow-y-auto max-h-[45vh]">
               {messages.map((m, i) => (
@@ -138,19 +166,17 @@ function TutorPage() {
           </div>
         )}
 
-        {messages.length === 0 && (
-          <div className="flex flex-wrap gap-2 justify-center mb-4">
-            {sugestoes.map((s) => (
-              <button
-                key={s}
-                onClick={() => send(s)}
-                className="text-xs px-3 py-1.5 rounded-full border border-border bg-card hover:border-primary/40 hover:text-primary transition text-muted-foreground"
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="flex flex-wrap gap-2 justify-center mb-4 mt-2">
+          {sugestoes.map((s) => (
+            <button
+              key={s}
+              onClick={() => send(s)}
+              className="text-xs px-3 py-1.5 rounded-full border border-border bg-card hover:border-primary/40 hover:text-primary transition text-muted-foreground"
+            >
+              {s}
+            </button>
+          ))}
+        </div>
 
         <form
           onSubmit={(e) => {
