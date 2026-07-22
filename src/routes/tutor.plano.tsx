@@ -19,7 +19,7 @@ export const Route = createFileRoute("/tutor/plano")({
 function PlanoPage() {
   const [state, setState] = useLocalStorage<boolean[]>(
     "atlas_aluno_pedro_plano",
-    planoSemana.map((p) => p.feito)
+    planoSemana.map((p) => p.feito),
   );
 
   return (

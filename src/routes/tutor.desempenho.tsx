@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { PortalShell } from "@/components/portal/Sidebar";
 import { desempenho } from "@/lib/portal-data";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 export const Route = createFileRoute("/tutor/desempenho")({
   head: () => ({
@@ -24,6 +25,43 @@ function DesempenhoPage() {
         <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mt-1">
           Seu progresso por matéria
         </h1>
+
+        <div className="mt-8 bg-card border border-border rounded-2xl p-6 shadow-soft">
+          <h2 className="text-sm font-semibold text-foreground mb-6">Gráfico de Aproveitamento</h2>
+          <div className="h-64 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={desempenho} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis
+                  dataKey="materia"
+                  tickLine={false}
+                  axisLine={false}
+                  style={{ fontSize: "12px" }}
+                />
+                <YAxis
+                  domain={[0, 100]}
+                  tickLine={false}
+                  axisLine={false}
+                  style={{ fontSize: "12px" }}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--card))",
+                    borderRadius: "12px",
+                    borderColor: "hsl(var(--border))",
+                    color: "hsl(var(--foreground))",
+                  }}
+                />
+                <Bar
+                  dataKey="pct"
+                  name="Aproveitamento (%)"
+                  fill="hsl(var(--primary))"
+                  radius={[8, 8, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
 
         <div className="mt-8 bg-card border border-border rounded-2xl p-6 shadow-soft">
           <h2 className="text-sm font-semibold text-foreground mb-6">Comparativo</h2>

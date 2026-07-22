@@ -20,6 +20,7 @@ import { Route as TutorIndexRouteImport } from './routes/tutor.index'
 import { Route as TutorDesempenhoRouteImport } from './routes/tutor.desempenho'
 import { Route as TutorMetaRouteImport } from './routes/tutor.meta'
 import { Route as TutorPlanoRouteImport } from './routes/tutor.plano'
+import { Route as TutorProvasRouteImport } from './routes/tutor.provas'
 import { Route as RadarAlunoIdRouteImport } from './routes/radar.aluno.$id'
 import { Route as RadarAlunoIdHistoricoRouteImport } from './routes/radar.aluno.$id.historico'
 
@@ -78,6 +79,11 @@ const TutorPlanoRoute = TutorPlanoRouteImport.update({
   path: '/tutor/plano',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TutorProvasRoute = TutorProvasRouteImport.update({
+  id: '/tutor/provas',
+  path: '/tutor/provas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RadarAlunoIdRoute = RadarAlunoIdRouteImport.update({
   id: '/radar/aluno/$id',
   path: '/radar/aluno/$id',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/tutor/desempenho': typeof TutorDesempenhoRoute
   '/tutor/meta': typeof TutorMetaRoute
   '/tutor/plano': typeof TutorPlanoRoute
+  '/tutor/provas': typeof TutorProvasRoute
   '/radar/': typeof RadarIndexRoute
   '/tutor/': typeof TutorIndexRoute
   '/radar/aluno/$id': typeof RadarAlunoIdRouteWithChildren
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/tutor/desempenho': typeof TutorDesempenhoRoute
   '/tutor/meta': typeof TutorMetaRoute
   '/tutor/plano': typeof TutorPlanoRoute
+  '/tutor/provas': typeof TutorProvasRoute
   '/radar': typeof RadarIndexRoute
   '/tutor': typeof TutorIndexRoute
   '/radar/aluno/$id': typeof RadarAlunoIdRouteWithChildren
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/tutor/desempenho': typeof TutorDesempenhoRoute
   '/tutor/meta': typeof TutorMetaRoute
   '/tutor/plano': typeof TutorPlanoRoute
+  '/tutor/provas': typeof TutorProvasRoute
   '/radar/': typeof RadarIndexRoute
   '/tutor/': typeof TutorIndexRoute
   '/radar/aluno/$id': typeof RadarAlunoIdRouteWithChildren
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/tutor/desempenho'
     | '/tutor/meta'
     | '/tutor/plano'
+    | '/tutor/provas'
     | '/radar/'
     | '/tutor/'
     | '/radar/aluno/$id'
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
     | '/tutor/desempenho'
     | '/tutor/meta'
     | '/tutor/plano'
+    | '/tutor/provas'
     | '/radar'
     | '/tutor'
     | '/radar/aluno/$id'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/tutor/desempenho'
     | '/tutor/meta'
     | '/tutor/plano'
+    | '/tutor/provas'
     | '/radar/'
     | '/tutor/'
     | '/radar/aluno/$id'
@@ -193,6 +205,7 @@ export interface RootRouteChildren {
   TutorDesempenhoRoute: typeof TutorDesempenhoRoute
   TutorMetaRoute: typeof TutorMetaRoute
   TutorPlanoRoute: typeof TutorPlanoRoute
+  TutorProvasRoute: typeof TutorProvasRoute
   RadarIndexRoute: typeof RadarIndexRoute
   TutorIndexRoute: typeof TutorIndexRoute
   RadarAlunoIdRoute: typeof RadarAlunoIdRouteWithChildren
@@ -277,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TutorPlanoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tutor/provas': {
+      id: '/tutor/provas'
+      path: '/tutor/provas'
+      fullPath: '/tutor/provas'
+      preLoaderRoute: typeof TutorProvasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/radar/aluno/$id': {
       id: '/radar/aluno/$id'
       path: '/radar/aluno/$id'
@@ -316,6 +336,7 @@ const rootRouteChildren: RootRouteChildren = {
   TutorDesempenhoRoute: TutorDesempenhoRoute,
   TutorMetaRoute: TutorMetaRoute,
   TutorPlanoRoute: TutorPlanoRoute,
+  TutorProvasRoute: TutorProvasRoute,
   RadarIndexRoute: RadarIndexRoute,
   TutorIndexRoute: TutorIndexRoute,
   RadarAlunoIdRoute: RadarAlunoIdRouteWithChildren,

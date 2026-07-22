@@ -20,6 +20,8 @@ export const Route = createFileRoute("/tutor/")({
   component: TutorPage,
 });
 
+const ALUNO_NOME = "Pedro";
+
 type Msg = { role: "user" | "bot"; text: string };
 
 function mockResposta(q: string): string {
@@ -59,7 +61,7 @@ function TutorPage() {
   const shortcuts = [
     { icon: BookOpen, label: "Meu Plano", to: "/tutor/plano" as const },
     { icon: BarChart3, label: "Meu Desempenho", to: "/tutor/desempenho" as const },
-    { icon: FileText, label: "Revisar Provas", to: "/tutor" as const },
+    { icon: FileText, label: "Revisar Provas", to: "/tutor/provas" as const },
     { icon: Target, label: "Minha Meta", to: "/tutor/meta" as const },
   ];
 
@@ -75,7 +77,7 @@ function TutorPage() {
       <div className="max-w-3xl mx-auto px-6 md:px-10 py-10 min-h-screen flex flex-col">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
-            Olá, Pedro <span className="inline-block">👋</span>
+            Olá, {ALUNO_NOME} <span className="inline-block">👋</span>
           </h1>
           <p className="text-muted-foreground mt-2">Como posso ajudar hoje?</p>
         </div>
