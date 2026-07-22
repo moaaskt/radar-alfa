@@ -37,7 +37,7 @@ function HistoricoPage() {
         <Link
           to="/radar/aluno/$id"
           params={{ id: aluno.id }}
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
+          className="hidden md:inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
         >
           <ChevronLeft className="h-4 w-4" /> Voltar ao perfil
         </Link>

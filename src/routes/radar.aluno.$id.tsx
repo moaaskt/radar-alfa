@@ -41,8 +41,8 @@ function AlunoPage() {
     <PortalShell variant="coordenador">
       <div className="max-w-6xl mx-auto p-6 md:p-10">
         <Link
-          to="/radar"
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
+          to="/radar/pedagogico"
+          className="hidden md:inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
         >
           <ChevronLeft className="h-4 w-4" /> Voltar ao Radar
         </Link>
