@@ -79,6 +79,8 @@ export function FeedbackWidget() {
     }
   };
 
+  if (pathname !== "/") return null;
+
   return (
     <>
       {/* Floating vertical tab button on the right edge */}
