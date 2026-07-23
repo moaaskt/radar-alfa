@@ -37,8 +37,8 @@ function WelcomePage() {
       <div className="w-full max-w-[420px] bg-card border border-border rounded-3xl p-8 shadow-lg flex flex-col">
         
         {/* Login / Cadastro Tabs */}
-        <div className="flex border-b border-border mb-6 text-base font-semibold">
-          <div className="border-b-4 border-primary text-primary pb-3 px-2 cursor-pointer rounded-t-sm">
+        <div className="flex border-b border-border mb-6 text-sm font-semibold">
+          <div className="border-b-4 border-primary text-primary pb-3 px-2 cursor-pointer">
             Login
           </div>
           <div className="text-muted-foreground pb-3 px-6 cursor-pointer hover:text-foreground transition">
@@ -47,7 +47,8 @@ function WelcomePage() {
         </div>
 
         <div className="text-left mb-6">
-          <p className="text-sm text-muted-foreground">
+          <h1 className="text-2xl font-bold text-foreground">Portal Atlas</h1>
+          <p className="text-sm text-muted-foreground mt-1">
             Preencha seus dados de acesso para entrar
           </p>
         </div>
@@ -64,7 +65,7 @@ function WelcomePage() {
             }`}
           >
             <div className="flex-1">
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Perfil de Acesso</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Perfil de Acesso</div>
               <div className="text-sm font-medium text-foreground mt-0.5">Aluno (Tutor Inteligente)</div>
             </div>
             <div className={`h-5 w-5 rounded-full border grid place-items-center ${
@@ -86,7 +87,7 @@ function WelcomePage() {
             }`}
           >
             <div className="flex-1">
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Perfil de Acesso</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Perfil de Acesso</div>
               <div className="text-sm font-medium text-foreground mt-0.5">Coordenador (Radar Pedagógico)</div>
             </div>
             <div className={`h-5 w-5 rounded-full border grid place-items-center ${
