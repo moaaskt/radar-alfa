@@ -14,12 +14,6 @@ export const Route = createFileRoute("/radar/indicadores")({
   component: IndicadoresPage,
 });
 
-const metricas = [
-  { label: "Frequência média", valor: "92%", delta: "+1.2%", up: true },
-  { label: "Desempenho médio", valor: "78%", delta: "+0.6%", up: true },
-  { label: "Alunos em risco", valor: "12", delta: "-2", up: true },
-  { label: "Engajamento Plurall", valor: "64%", delta: "-3.4%", up: false },
-];
 
 const turmas = [
   { nome: "6º Ano", desempenho: 82 },
@@ -38,17 +32,46 @@ function IndicadoresPage() {
         </h1>
         <p className="text-sm text-muted-foreground mt-1">Panorama geral da escola.</p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
-          {metricas.map((m) => (
-            <div key={m.label} className="bg-card border border-border rounded-2xl p-4 shadow-soft">
-              <p className="text-xs text-muted-foreground">{m.label}</p>
-              <p className="text-2xl font-semibold text-foreground mt-1">{m.valor}</p>
-              <p
-                className={`text-xs mt-1 inline-flex items-center gap-1 ${m.up ? "text-success" : "text-destructive"}`}
-              >
-                {m.up ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                {m.delta}
-              </p>
+        {/* Asymmetric metric layout — hero "Alunos em risco" + secondary companions */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6">
+          {/* Hero card: Alunos em risco — the actionable metric */}
+          <div className="relative overflow-hidden md:col-span-2 md:row-span-2 bg-card border border-border border-l-2 border-l-destructive rounded-xl p-6 md:p-8 shadow-soft flex flex-col justify-between">
+            <div className="relative z-10">
+              <p className="text-xs font-semibold uppercase tracking-wider text-destructive">Alunos em risco</p>
+              <div className="flex items-baseline gap-3 mt-3">
+                <span className="text-5xl md:text-6xl font-bold text-foreground leading-none">12</span>
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-success">
+                  <TrendingUp className="h-3.5 w-3.5" />
+                  -2
+                </span>
+              </div>
+              <p className="text-sm text-muted-foreground mt-2">alunos precisam de intervenção</p>
+            </div>
+            <div className="absolute right-[-10px] bottom-[-10px] text-destructive opacity-[0.04] pointer-events-none">
+              <TrendingDown className="h-24 w-24" />
+            </div>
+          </div>
+
+          {/* Secondary metrics */}
+          {[
+            { label: "Frequência média", valor: "92%", delta: "+1.2%", up: true },
+            { label: "Desempenho médio", valor: "78%", delta: "+0.6%", up: true },
+            { label: "Engajamento Plurall", valor: "64%", delta: "-3.4%", up: false },
+          ].map((m) => (
+            <div
+              key={m.label}
+              className={`md:col-span-3 bg-card border border-border border-l-2 ${m.up ? "border-l-success" : "border-l-destructive"} rounded-xl p-5 shadow-soft flex items-center justify-between`}
+            >
+              <div>
+                <p className="text-xs text-muted-foreground">{m.label}</p>
+                <div className="flex items-baseline gap-2 mt-1">
+                  <span className="text-2xl font-bold text-foreground leading-none">{m.valor}</span>
+                  <span className={`inline-flex items-center gap-0.5 text-xs font-medium ${m.up ? "text-success" : "text-destructive"}`}>
+                    {m.up ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                    {m.delta}
+                  </span>
+                </div>
+              </div>
             </div>
           ))}
         </div>

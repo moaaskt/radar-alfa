@@ -1,65 +1,122 @@
 // impeccable-disable clipped-overflow-container
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { GraduationCap, UserCog } from "lucide-react";
+import { useState } from "react";
+import { GraduationCap, UserCog, Check } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Portal Atlas — Selecionar perfil" },
-      { name: "description", content: "Acesse o Portal Atlas como Coordenador ou como Aluno." },
-      { property: "og:title", content: "Portal Atlas — Selecionar perfil" },
-      {
-        property: "og:description",
-        content: "Acesse o Portal Atlas como Coordenador ou como Aluno.",
-      },
+      { title: "Login — Plurall" },
+      { name: "description", content: "Acesse sua conta no Plurall." },
     ],
   }),
-  component: Home,
+  component: WelcomePage,
 });
 
-function Home() {
+function WelcomePage() {
+  const [profile, setProfile] = useState<"aluno" | "coordenador">("aluno");
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-primary-soft via-background to-background px-4 py-16">
-      <div className="mb-10 text-center">
-        <div className="mx-auto h-14 w-14 rounded-2xl bg-primary text-primary-foreground grid place-items-center font-bold text-2xl mb-4 shadow-card">
-          A
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f4f5f7] dark:bg-zinc-950 px-4 py-16">
+      {/* Plurall Smile Logo centered above the card */}
+      <div className="mb-8 text-primary">
+        <svg className="w-16 h-16" viewBox="0 0 64 64" fill="currentColor">
+          <circle cx="20" cy="20" r="4.5" />
+          <circle cx="44" cy="20" r="4.5" />
+          <path
+            d="M 12 36 A 20 20 0 0 0 52 36"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="7"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
+
+      {/* Floating Card exactly like Plurall Login */}
+      <div className="w-full max-w-[420px] bg-card border border-border rounded-3xl p-8 shadow-lg flex flex-col">
+        
+        {/* Login / Cadastro Tabs */}
+        <div className="flex border-b border-border mb-6 text-sm font-semibold">
+          <div className="border-b-4 border-primary text-primary pb-3 px-2 cursor-pointer">
+            Login
+          </div>
+          <div className="text-muted-foreground pb-3 px-6 cursor-pointer hover:text-foreground transition">
+            Cadastro
+          </div>
         </div>
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
-          Portal Atlas
-        </h1>
-        <p className="mt-2 text-muted-foreground">Selecione seu perfil para entrar</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-3xl">
+
+        <div className="text-left mb-6">
+          <h1 className="text-2xl font-bold text-foreground">Portal Atlas</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Preencha seus dados de acesso para entrar
+          </p>
+        </div>
+
+        {/* Profile selectors styled as input fields */}
+        <div className="space-y-4">
+          {/* Simulated Input 1: Aluno */}
+          <button
+            onClick={() => setProfile("aluno")}
+            className={`w-full h-14 rounded-xl border transition-all duration-200 flex items-center px-4 text-left bg-[#f8f9fc] dark:bg-zinc-900 ${
+              profile === "aluno"
+                ? "border-primary ring-2 ring-primary/20"
+                : "border-border hover:border-muted-foreground/30"
+            }`}
+          >
+            <div className="flex-1">
+              <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Perfil de Acesso</div>
+              <div className="text-sm font-medium text-foreground mt-0.5">Aluno (Tutor Inteligente)</div>
+            </div>
+            <div className={`h-5 w-5 rounded-full border grid place-items-center ${
+              profile === "aluno"
+                ? "bg-primary border-primary text-primary-foreground"
+                : "border-border"
+            }`}>
+              {profile === "aluno" && <Check className="h-3 w-3" />}
+            </div>
+          </button>
+
+          {/* Simulated Input 2: Coordenador */}
+          <button
+            onClick={() => setProfile("coordenador")}
+            className={`w-full h-14 rounded-xl border transition-all duration-200 flex items-center px-4 text-left bg-[#f8f9fc] dark:bg-zinc-900 ${
+              profile === "coordenador"
+                ? "border-primary ring-2 ring-primary/20"
+                : "border-border hover:border-muted-foreground/30"
+            }`}
+          >
+            <div className="flex-1">
+              <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Perfil de Acesso</div>
+              <div className="text-sm font-medium text-foreground mt-0.5">Coordenador (Radar Pedagógico)</div>
+            </div>
+            <div className={`h-5 w-5 rounded-full border grid place-items-center ${
+              profile === "coordenador"
+                ? "bg-primary border-primary text-primary-foreground"
+                : "border-border"
+            }`}>
+              {profile === "coordenador" && <Check className="h-3 w-3" />}
+            </div>
+          </button>
+        </div>
+
+        {/* Mock Forgot Password link */}
+        <div className="text-right mt-3">
+          <span className="text-xs font-semibold text-primary hover:underline cursor-pointer">
+            Esqueci minha senha
+          </span>
+        </div>
+
+        {/* Primary Action Button: Entrar */}
         <Link
-          to="/radar"
-          className="group relative overflow-hidden bg-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-card hover:border-primary/50 hover:bg-primary/[0.01] transition duration-300 min-h-[170px] flex flex-col justify-between"
+          to={profile === "aluno" ? "/tutor" : "/radar"}
+          className="w-full py-3.5 rounded-full bg-primary hover:bg-primary/95 text-primary-foreground font-bold text-center text-sm shadow-md transition duration-200 mt-8 block"
         >
-          <div className="relative z-10 text-left">
-            <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Entrar como Coordenador</h2>
-            <p className="mt-2 text-sm text-muted-foreground group-hover:text-muted-foreground/90 transition-colors duration-300">
-              Acesse o Radar Pedagógico Inteligente e acompanhe os alunos prioritários.
-            </p>
-          </div>
-          <div className="absolute right-[-15px] bottom-[-15px] text-primary opacity-[0.05] group-hover:opacity-[0.09] group-hover:scale-110 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-300 ease-out pointer-events-none">
-            <UserCog className="h-24 w-24" />
-          </div>
-        </Link>
-        <Link
-          to="/tutor"
-          className="group relative overflow-hidden bg-card border border-border rounded-2xl p-8 shadow-soft hover:shadow-card hover:border-primary/50 hover:bg-primary/[0.01] transition duration-300 min-h-[170px] flex flex-col justify-between"
-        >
-          <div className="relative z-10 text-left">
-            <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">Entrar como Aluno</h2>
-            <p className="mt-2 text-sm text-muted-foreground group-hover:text-muted-foreground/90 transition-colors duration-300">
-              Converse com o Tutor Inteligente, veja seu plano, desempenho e meta.
-            </p>
-          </div>
-          <div className="absolute right-[-15px] bottom-[-15px] text-primary opacity-[0.05] group-hover:opacity-[0.09] group-hover:scale-110 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-300 ease-out pointer-events-none">
-            <GraduationCap className="h-24 w-24" />
-          </div>
+          Entrar
         </Link>
       </div>
-      <p className="mt-10 text-xs text-muted-foreground">
+
+      <p className="mt-8 text-xs text-muted-foreground">
         Protótipo navegável — dados de demonstração
       </p>
     </div>

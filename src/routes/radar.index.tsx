@@ -1,6 +1,6 @@
 // impeccable-disable clipped-overflow-container
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Radar, Users, Calendar, TrendingUp } from "lucide-react";
+import { Radar, Users, Calendar, TrendingUp, AlertCircle, AlertTriangle } from "lucide-react";
 import { PortalShell } from "@/components/portal/Sidebar";
 import { alunos, resumo } from "@/lib/portal-data";
 
@@ -27,17 +27,26 @@ function InicioPage() {
         <p className="text-sm text-muted-foreground mt-1">Aqui está um resumo rápido do dia.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-          <div className="bg-card border border-border rounded-2xl p-5 shadow-soft">
-            <p className="text-xs text-muted-foreground">Alunos monitorados</p>
-            <p className="text-3xl font-semibold text-foreground mt-1">{alunos.length}</p>
+          <div className="bg-card border border-border border-l-2 border-l-primary rounded-xl p-5 shadow-soft">
+            <div className="flex items-center gap-1.5 text-primary">
+              <Users className="h-3.5 w-3.5" />
+              <span className="text-xs font-semibold uppercase tracking-wider">Alunos monitorados</span>
+            </div>
+            <p className="text-3xl font-bold text-foreground mt-2 leading-none">{alunos.length}</p>
           </div>
-          <div className="bg-card border border-border rounded-2xl p-5 shadow-soft">
-            <p className="text-xs text-muted-foreground">Alto risco</p>
-            <p className="text-3xl font-semibold text-destructive mt-1">{resumo.alto}</p>
+          <div className="bg-card border border-border border-l-2 border-l-destructive rounded-xl p-5 shadow-soft">
+            <div className="flex items-center gap-1.5 text-destructive">
+              <AlertCircle className="h-3.5 w-3.5" />
+              <span className="text-xs font-semibold uppercase tracking-wider">Alto risco</span>
+            </div>
+            <p className="text-3xl font-bold text-foreground mt-2 leading-none">{resumo.alto}</p>
           </div>
-          <div className="bg-card border border-border rounded-2xl p-5 shadow-soft">
-            <p className="text-xs text-muted-foreground">Em atenção</p>
-            <p className="text-3xl font-semibold text-warning mt-1">{resumo.atencao}</p>
+          <div className="bg-card border border-border border-l-2 border-l-warning rounded-xl p-5 shadow-soft">
+            <div className="flex items-center gap-1.5 text-warning">
+              <AlertTriangle className="h-3.5 w-3.5" />
+              <span className="text-xs font-semibold uppercase tracking-wider">Atenção</span>
+            </div>
+            <p className="text-3xl font-bold text-foreground mt-2 leading-none">{resumo.atencao}</p>
           </div>
         </div>
 

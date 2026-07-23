@@ -22,35 +22,6 @@ export const Route = createFileRoute("/radar/pedagogico")({
   component: RadarPage,
 });
 
-function StatusCard({
-  tone,
-  Icon,
-  label,
-  count,
-}: {
-  tone: "danger" | "warning" | "success";
-  Icon: typeof AlertCircle;
-  label: string;
-  count: number;
-}) {
-  const styles = {
-    danger: "bg-danger/10 text-danger border-danger/20",
-    warning: "bg-warning/15 text-warning-foreground border-warning/30",
-    success: "bg-success/10 text-success border-success/20",
-  }[tone];
-  return (
-    <div className="bg-card border border-border rounded-2xl p-5 shadow-soft flex items-center gap-4">
-      <div className={`h-12 w-12 rounded-xl grid place-items-center border ${styles}`}>
-        <Icon className="h-6 w-6" />
-      </div>
-      <div>
-        <div className="text-3xl font-semibold text-foreground leading-none">{count}</div>
-        <div className="text-sm text-muted-foreground mt-1">{label}</div>
-      </div>
-    </div>
-  );
-}
-
 function RiskBar({ pct }: { pct: number }) {
   const color = pct >= 80 ? "bg-danger" : pct >= 60 ? "bg-warning" : "bg-success";
   return (
@@ -88,15 +59,46 @@ function RadarPage() {
           </div>
         </div>
 
+        {/* Asymmetric status cards — hero "Alto risco" + secondary companions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-          <StatusCard tone="danger" Icon={AlertCircle} label="Alto risco" count={resumo.alto} />
-          <StatusCard tone="warning" Icon={AlertTriangle} label="Atenção" count={resumo.atencao} />
-          <StatusCard
-            tone="success"
-            Icon={CheckCircle2}
-            label="Dentro do esperado"
-            count={resumo.ok}
-          />
+          {/* Hero card: Alto risco — spans 2 columns on desktop */}
+          <div className="relative overflow-hidden md:col-span-2 bg-card border border-border border-l-2 border-l-destructive rounded-xl p-6 md:p-8 shadow-soft">
+            <div className="relative z-10 flex items-start gap-4">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 text-destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <span className="text-xs font-semibold uppercase tracking-wider">Alto risco</span>
+                </div>
+                <div className="text-5xl md:text-6xl font-bold text-foreground mt-3 leading-none">{resumo.alto}</div>
+                <p className="text-sm text-muted-foreground mt-2">alunos precisam de intervenção imediata</p>
+              </div>
+            </div>
+            <div className="absolute right-[-12px] bottom-[-12px] text-destructive opacity-[0.05] pointer-events-none">
+              <AlertCircle className="h-28 w-28" />
+            </div>
+          </div>
+
+          {/* Secondary cards stacked in the third column */}
+          <div className="flex flex-col gap-4">
+            {/* Atenção */}
+            <div className="flex-1 bg-card border border-border border-l-2 border-l-warning rounded-xl p-5 shadow-soft">
+              <div className="flex items-center gap-2 text-warning">
+                <AlertTriangle className="h-3.5 w-3.5" />
+                <span className="text-xs font-medium uppercase tracking-wider">Atenção</span>
+              </div>
+              <div className="text-3xl font-bold text-foreground mt-2 leading-none">{resumo.atencao}</div>
+              <p className="text-xs text-muted-foreground mt-1">alunos em observação</p>
+            </div>
+            {/* Dentro do esperado */}
+            <div className="flex-1 bg-card border border-border border-l-2 border-l-success rounded-xl p-5 shadow-soft">
+              <div className="flex items-center gap-2 text-success">
+                <CheckCircle2 className="h-3.5 w-3.5" />
+                <span className="text-xs font-medium uppercase tracking-wider">Dentro do esperado</span>
+              </div>
+              <div className="text-3xl font-bold text-foreground mt-2 leading-none">{resumo.ok}</div>
+              <p className="text-xs text-muted-foreground mt-1">alunos no caminho certo</p>
+            </div>
+          </div>
         </div>
 
         <div className="flex items-center justify-between mb-4">

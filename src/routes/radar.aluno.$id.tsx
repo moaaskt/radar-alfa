@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowDown, Check, ChevronLeft, ClipboardList } from "lucide-react";
+import { ArrowDown, Check, ChevronLeft, ClipboardList, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { PortalShell } from "@/components/portal/Sidebar";
 import { alunos } from "@/lib/portal-data";
@@ -49,7 +49,7 @@ function AlunoPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
+            <div className="bg-card border border-border rounded-xl p-6 shadow-soft">
               <div className="flex items-center gap-4">
                 <div className="h-16 w-16 rounded-full bg-primary/10 text-primary grid place-items-center text-lg font-semibold">
                   {aluno.nome
@@ -93,26 +93,22 @@ function AlunoPage() {
               </div>
             </div>
 
-            <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
-              <h2 className="font-semibold text-foreground mb-4">Motivos</h2>
+            <div className="bg-card border border-border rounded-xl p-6 shadow-soft">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Motivos</h2>
               <ul className="space-y-3">
                 {aluno.motivos.map((m, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm">
-                    <span className="h-8 w-8 rounded-lg bg-danger/10 text-danger grid place-items-center">
-                      <ArrowDown className="h-4 w-4" />
-                    </span>
-                    <span className="text-foreground">{m}</span>
+                  <li key={i} className="flex items-center gap-3 text-sm border-l-2 border-l-destructive bg-destructive/[0.01] rounded-r-xl p-3">
+                    <ArrowDown className="h-4 w-4 text-destructive shrink-0" />
+                    <span className="text-foreground font-medium">{m}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-card border border-border rounded-2xl p-6 shadow-soft">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-xs font-medium uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">
-                  IA
-                </span>
-                <h2 className="font-semibold text-foreground">Sugestões da IA</h2>
+            <div className="bg-card border border-border rounded-xl p-6 shadow-soft">
+              <div className="flex items-center gap-2 mb-4 text-primary">
+                <Sparkles className="h-4 w-4" />
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Sugestões da IA</h2>
               </div>
               <ul className="space-y-2">
                 {aluno.sugestoes.map((s, i) => {
@@ -147,10 +143,10 @@ function AlunoPage() {
           </div>
 
           <div className="lg:col-span-1">
-            <div className="bg-card border border-border rounded-2xl p-6 shadow-soft sticky top-6">
-              <div className="flex items-center gap-2 mb-4">
-                <ClipboardList className="h-5 w-5 text-primary" />
-                <h2 className="font-semibold text-foreground">Registrar Intervenção</h2>
+            <div className="bg-card border border-border rounded-xl p-6 shadow-soft sticky top-6">
+              <div className="flex items-center gap-2 mb-4 text-primary">
+                <ClipboardList className="h-4.5 w-4.5" />
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Registrar Intervenção</h2>
               </div>
               <textarea
                 value={nota}

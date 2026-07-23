@@ -80,7 +80,7 @@
   --accent-foreground: oklch(0.3 0.1 290);
 
   /* Destructive — keep red */
-  --destructive: oklch(0.6 0.22 25);
+  --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(1 0 0);
 
   /* Semantic status — preserved as-is */
