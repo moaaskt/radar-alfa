@@ -66,8 +66,11 @@ export function FeedbackWidget() {
         throw new Error("Falha no envio do feedback");
       }
 
-      toast.success("Obrigado! Seu feedback foi enviado com sucesso.");
       setIsOpen(false);
+      // Fire success notification after modal close
+      setTimeout(() => {
+        toast.success("Obrigado! Seu feedback foi enviado com sucesso.");
+      }, 100);
     } catch (error) {
       console.error("Erro ao enviar feedback:", error);
       setErrorMsg("Não foi possível enviar, tente novamente.");
@@ -81,7 +84,7 @@ export function FeedbackWidget() {
       {/* Floating vertical tab button on the right edge */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-[40] flex flex-col items-center justify-center gap-1.5 py-4 px-2 bg-primary-soft hover:bg-primary/20 text-primary border-y border-l border-primary/20 rounded-l-2xl shadow-md transition duration-200 select-none group"
+        className="fixed right-0 top-[55%] -translate-y-1/2 z-[40] flex flex-col items-center justify-center gap-1.5 py-4 px-2 bg-primary-soft hover:bg-primary/20 text-primary border-y border-l border-primary/20 rounded-l-2xl shadow-md transition duration-200 select-none group"
       >
         <span className="[writing-mode:vertical-lr] rotate-180 font-bold text-[11px] tracking-widest uppercase">
           Feedback
