@@ -99,6 +99,3 @@ Protótipo funcional e navegável, sem backend — todos os dados são mockados 
 
 ---
 
-<div align="center">
-  <sub>Feito com Lovable + Antigravity</sub>
-</div>
