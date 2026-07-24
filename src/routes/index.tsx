@@ -6,8 +6,8 @@ import { GraduationCap, UserCog, Check } from "lucide-react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Login — Plurall" },
-      { name: "description", content: "Acesse sua conta no Plurall." },
+      { title: "Login — Radar Alfa" },
+      { name: "description", content: "Acesse sua conta no Radar Alfa." },
     ],
   }),
   component: WelcomePage,
