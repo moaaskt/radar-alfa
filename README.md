@@ -98,4 +98,11 @@ src/
 Protótipo funcional e navegável, sem backend — todos os dados são mockados ou persistidos localmente via `localStorage`. Construído para apresentação e validação de conceito.
 
 ---
+<div align="center">
 
+
+Todos os direitos reservados.
+
+Este projeto foi desenvolvido exclusivamente para fins de demonstração e apresentação educacional. Nenhuma parte deste código, design ou conteúdo pode ser copiada, modificada, distribuída ou utilizada para fins comerciais sem autorização expressa do autor.
+  <sub>Copyright (c) 2026 Radar Alfa</sub>
+</div>
