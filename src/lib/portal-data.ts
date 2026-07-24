@@ -19,7 +19,7 @@ export const alunos: Aluno[] = [
     motivos: [
       "Frequência caiu",
       "Nota de Matemática",
-      "Não acessa o Plurall",
+      "Não acessa o Radar",
       "Família não visualizou comunicados",
     ],
     sugestoes: [

@@ -97,13 +97,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9f1de9f8-4131-43a8-a992-faa238563009/id-preview-e0aa9d27--44feb45d-dfb8-43a4-8ec9-9fbdb6125110.lovable.app-1784756155879.png",
+        content: "https://atlas-compass-prt.vercel.app/og-image.png",
       },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Radar Alfa — Radar Pedagógico Inteligente" },
       {
         name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9f1de9f8-4131-43a8-a992-faa238563009/id-preview-e0aa9d27--44feb45d-dfb8-43a4-8ec9-9fbdb6125110.lovable.app-1784756155879.png",
+        content: "https://atlas-compass-prt.vercel.app/og-image.png",
       },
     ],
     links: [

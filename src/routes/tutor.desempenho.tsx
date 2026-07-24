@@ -48,11 +48,11 @@ function DesempenhoPage() {
                   contentStyle={{
                     backgroundColor: "#ffffff",
                     borderRadius: "12px",
-                    borderColor: "#e9e5f0",
-                    color: "#2d1b4e",
+                    borderColor: "#dde6f8",
+                    color: "#1a2d5a",
                   }}
                 />
-                <Bar dataKey="pct" name="Aproveitamento (%)" fill="#7C3AED" radius={[8, 8, 0, 0]} />
+                <Bar dataKey="pct" name="Aproveitamento (%)" fill="#2F5FE0" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
