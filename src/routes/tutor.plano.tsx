@@ -7,7 +7,7 @@ import { planoSemana } from "@/lib/portal-data";
 export const Route = createFileRoute("/tutor/plano")({
   head: () => ({
     meta: [
-      { title: "Meu Plano — Portal Atlas" },
+      { title: "Meu Plano — Radar Alfa" },
       { name: "description", content: "Seu plano de estudos da semana, organized por dia." },
       { property: "og:title", content: "Meu Plano da Semana" },
       { property: "og:description", content: "Cronograma semanal de estudos do aluno." },

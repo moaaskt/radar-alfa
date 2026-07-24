@@ -5,7 +5,7 @@ import { PortalShell } from "@/components/portal/Sidebar";
 export const Route = createFileRoute("/radar/config")({
   head: () => ({
     meta: [
-      { title: "Configurações — Portal Atlas" },
+      { title: "Configurações — Radar Alfa" },
       { name: "description", content: "Preferências da conta de coordenação." },
       { property: "og:title", content: "Configurações" },
       { property: "og:description", content: "Preferências e notificações." },

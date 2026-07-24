@@ -9,7 +9,7 @@ type Intervencao = { data: string; descricao: string; concluido: boolean };
 export const Route = createFileRoute("/radar/aluno/$id/historico")({
   head: () => ({
     meta: [
-      { title: "Histórico do aluno — Portal Atlas" },
+      { title: "Histórico do aluno — Radar Alfa" },
       { name: "description", content: "Linha do tempo de intervenções pedagógicas do aluno." },
       { property: "og:title", content: "Histórico do aluno" },
       { property: "og:description", content: "Linha do tempo de intervenções pedagógicas." },

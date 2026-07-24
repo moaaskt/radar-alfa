@@ -21,7 +21,7 @@ import { buttonVariants } from "@/components/ui/button";
 export const Route = createFileRoute("/tutor/")({
   head: () => ({
     meta: [
-      { title: "Tutor Inteligente — Portal Atlas" },
+      { title: "Tutor Inteligente — Radar Alfa" },
       { name: "description", content: "Converse com o Tutor Inteligente e organize seus estudos." },
       { property: "og:title", content: "Tutor Inteligente" },
       {

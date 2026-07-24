@@ -7,8 +7,8 @@ import { alunos, resumo } from "@/lib/portal-data";
 export const Route = createFileRoute("/radar/")({
   head: () => ({
     meta: [
-      { title: "Início — Portal Atlas" },
-      { name: "description", content: "Visão geral do coordenador no Portal Atlas." },
+      { title: "Início — Radar Alfa" },
+      { name: "description", content: "Visão geral do coordenador no Radar Alfa." },
       { property: "og:title", content: "Início — Coordenação" },
       { property: "og:description", content: "Painel inicial da coordenação." },
     ],

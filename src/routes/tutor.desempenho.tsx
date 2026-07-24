@@ -7,7 +7,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 export const Route = createFileRoute("/tutor/desempenho")({
   head: () => ({
     meta: [
-      { title: "Meu Desempenho — Portal Atlas" },
+      { title: "Meu Desempenho — Radar Alfa" },
       { name: "description", content: "Comparativo de desempenho por matéria." },
       { property: "og:title", content: "Meu Desempenho" },
       { property: "og:description", content: "Percentual por matéria e tendência." },

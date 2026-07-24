@@ -79,21 +79,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Portal Atlas — Selecionar perfil" },
-      { name: "description", content: "Acesse o Portal Atlas como Coordenador ou como Aluno." },
+      { title: "Radar Alfa — Selecionar perfil" },
+      { name: "description", content: "Acesse o Radar Alfa como Coordenador ou como Aluno." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Portal Atlas — Selecionar perfil" },
+      { property: "og:title", content: "Radar Alfa — Selecionar perfil" },
       {
         property: "og:description",
-        content: "Acesse o Portal Atlas como Coordenador ou como Aluno.",
+        content: "Acesse o Radar Alfa como Coordenador ou como Aluno.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Portal Atlas — Selecionar perfil" },
+      { name: "twitter:title", content: "Radar Alfa — Selecionar perfil" },
       {
         name: "twitter:description",
-        content: "Acesse o Portal Atlas como Coordenador ou como Aluno.",
+        content: "Acesse o Radar Alfa como Coordenador ou como Aluno.",
       },
       {
         property: "og:image",
@@ -110,6 +110,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/logo-radar-alfa-icon.svg",
       },
     ],
   }),

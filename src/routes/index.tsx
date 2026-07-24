@@ -18,19 +18,13 @@ function WelcomePage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#f4f5f7] dark:bg-zinc-950 px-4 py-16">
-      {/* Plurall Smile Logo centered above the card */}
-      <div className="mb-8 text-primary">
-        <svg className="w-16 h-16" viewBox="0 0 64 64" fill="currentColor">
-          <circle cx="20" cy="20" r="4.5" />
-          <circle cx="44" cy="20" r="4.5" />
-          <path
-            d="M 12 36 A 20 20 0 0 0 52 36"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="7"
-            strokeLinecap="round"
-          />
-        </svg>
+      {/* Radar Alfa Logo centered above the card */}
+      <div className="mb-6 px-4">
+        <img
+          src="/logo_radar_alfa_v1.png"
+          alt="Logo Radar Alfa"
+          className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] h-auto mx-auto"
+        />
       </div>
 
       {/* Floating Card exactly like Plurall Login */}
@@ -47,7 +41,7 @@ function WelcomePage() {
         </div>
 
         <div className="text-left mb-6">
-          <h1 className="text-2xl font-bold text-foreground">Portal Atlas</h1>
+          <h1 className="text-2xl font-bold text-foreground">Radar Alfa</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Preencha seus dados de acesso para entrar
           </p>

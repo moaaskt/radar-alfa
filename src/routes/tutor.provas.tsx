@@ -5,7 +5,7 @@ import { PortalShell } from "@/components/portal/Sidebar";
 export const Route = createFileRoute("/tutor/provas")({
   head: () => ({
     meta: [
-      { title: "Revisar Provas — Portal Atlas" },
+      { title: "Revisar Provas — Radar Alfa" },
       { name: "description", content: "Lista de avaliações e provas recentes." },
       { property: "og:title", content: "Revisar Provas" },
       { property: "og:description", content: "Revisão de avaliações do aluno." },

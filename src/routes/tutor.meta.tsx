@@ -5,7 +5,7 @@ import { PortalShell } from "@/components/portal/Sidebar";
 export const Route = createFileRoute("/tutor/meta")({
   head: () => ({
     meta: [
-      { title: "Minha Meta — Portal Atlas" },
+      { title: "Minha Meta — Radar Alfa" },
       { name: "description", content: "Acompanhe sua meta pedagógica pessoal." },
       { property: "og:title", content: "Minha Meta" },
       { property: "og:description", content: "Acompanhe sua evolução rumo à meta." },
