@@ -6,7 +6,7 @@ import { alunos } from "@/lib/portal-data";
 export const Route = createFileRoute("/radar/alunos")({
   head: () => ({
     meta: [
-      { title: "Alunos — Portal Atlas" },
+      { title: "Alunos — Radar Alfa" },
       { name: "description", content: "Base completa de alunos monitorados." },
       { property: "og:title", content: "Alunos" },
       { property: "og:description", content: "Lista completa de alunos." },

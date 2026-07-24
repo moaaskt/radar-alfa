@@ -11,7 +11,7 @@ export type Intervencao = { data: string; descricao: string; concluido: boolean 
 export const Route = createFileRoute("/radar/aluno/$id")({
   head: ({ params }) => ({
     meta: [
-      { title: `Perfil do aluno — Portal Atlas` },
+      { title: `Perfil do aluno — Radar Alfa` },
       { name: "description", content: `Perfil pedagógico do aluno ${params.id}.` },
       { property: "og:title", content: "Perfil do aluno" },
       { property: "og:description", content: "Índice pedagógico, motivos e sugestões da IA." },

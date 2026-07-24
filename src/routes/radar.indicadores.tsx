@@ -5,7 +5,7 @@ import { PortalShell } from "@/components/portal/Sidebar";
 export const Route = createFileRoute("/radar/indicadores")({
   head: () => ({
     meta: [
-      { title: "Indicadores — Portal Atlas" },
+      { title: "Indicadores — Radar Alfa" },
       { name: "description", content: "Indicadores gerais da coordenação." },
       { property: "og:title", content: "Indicadores" },
       { property: "og:description", content: "Métricas da escola." },

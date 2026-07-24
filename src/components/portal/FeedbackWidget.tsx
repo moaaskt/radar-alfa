@@ -103,7 +103,7 @@ export function FeedbackWidget() {
           {/* Modal Card */}
           <div className="relative bg-card border border-border rounded-3xl p-6 shadow-xl w-full max-w-[360px] flex flex-col z-10 animate-in fade-in zoom-in-95 duration-200">
             <h3 className="text-center font-bold text-base text-foreground leading-tight px-2">
-              O que você está achando do Portal Atlas?
+              O que você está achando do Radar Alfa?
             </h3>
 
             {/* Emojis Line */}

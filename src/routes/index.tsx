@@ -47,7 +47,7 @@ function WelcomePage() {
         </div>
 
         <div className="text-left mb-6">
-          <h1 className="text-2xl font-bold text-foreground">Portal Atlas</h1>
+          <h1 className="text-2xl font-bold text-foreground">Radar Alfa</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Preencha seus dados de acesso para entrar
           </p>

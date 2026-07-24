@@ -53,7 +53,7 @@ export function PortalSidebar({ variant }: { variant: "coordenador" | "aluno" })
             A
           </div>
           <div>
-            <div className="font-semibold leading-tight">Portal Atlas</div>
+            <div className="font-semibold leading-tight">Radar Alfa</div>
             <div className="text-xs text-sidebar-foreground/70">
               {variant === "coordenador" ? "Coordenação" : "Aluno"}
             </div>
@@ -303,7 +303,7 @@ export function PortalShell({
                   A
                 </div>
                 <div className="min-w-0">
-                  <div className="font-semibold text-sm leading-tight text-foreground truncate">Portal Atlas</div>
+                  <div className="font-semibold text-sm leading-tight text-foreground truncate">Radar Alfa</div>
                   <div className="text-xs text-muted-foreground leading-none mt-0.5">
                     Aluno
                   </div>

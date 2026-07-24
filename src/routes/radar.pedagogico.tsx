@@ -7,7 +7,7 @@ import { alunos, resumo } from "@/lib/portal-data";
 export const Route = createFileRoute("/radar/pedagogico")({
   head: () => ({
     meta: [
-      { title: "Radar Pedagógico — Portal Atlas" },
+      { title: "Radar Pedagógico — Radar Alfa" },
       {
         name: "description",
         content: "Visão do coordenador: alunos prioritários e índice de risco.",

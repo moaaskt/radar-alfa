@@ -5,7 +5,7 @@ import { PortalShell } from "@/components/portal/Sidebar";
 export const Route = createFileRoute("/radar/agenda")({
   head: () => ({
     meta: [
-      { title: "Agenda — Portal Atlas" },
+      { title: "Agenda — Radar Alfa" },
       { name: "description", content: "Agenda da coordenação: reuniões e compromissos." },
       { property: "og:title", content: "Agenda" },
       { property: "og:description", content: "Próximos compromissos." },
