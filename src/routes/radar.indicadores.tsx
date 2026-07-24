@@ -56,7 +56,7 @@ function IndicadoresPage() {
           {[
             { label: "Frequência média", valor: "92%", delta: "+1.2%", up: true },
             { label: "Desempenho médio", valor: "78%", delta: "+0.6%", up: true },
-            { label: "Engajamento Plurall", valor: "64%", delta: "-3.4%", up: false },
+            { label: "Engajamento Radar Alfa", valor: "64%", delta: "-3.4%", up: false },
           ].map((m) => (
             <div
               key={m.label}
