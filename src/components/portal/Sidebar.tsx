@@ -49,8 +49,13 @@ export function PortalSidebar({ variant }: { variant: "coordenador" | "aluno" })
     <aside className="hidden md:flex w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground min-h-screen border-r border-sidebar-border">
       <div className="px-6 py-6 border-b border-sidebar-border">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-lg bg-sidebar-primary text-sidebar-primary-foreground grid place-items-center font-bold">
-            A
+          <div className="h-9 w-9 rounded-lg overflow-hidden shrink-0 bg-white grid place-items-center">
+            <img
+              src="/logo_radar_alfa_v1.svg"
+              alt="Logo Radar Alfa"
+              className="w-full h-full object-contain"
+              style={{ objectPosition: "50% 42%", transform: "scale(2.2)" }}
+            />
           </div>
           <div>
             <div className="font-semibold leading-tight">Radar Alfa</div>
@@ -299,8 +304,13 @@ export function PortalShell({
               </>
             ) : (
               <Link to="/" className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-lg bg-primary text-primary-foreground grid place-items-center font-bold text-sm shrink-0">
-                  A
+                <div className="h-8 w-8 rounded-lg overflow-hidden shrink-0 bg-white grid place-items-center">
+                  <img
+                    src="/logo_radar_alfa_v1.svg"
+                    alt="Logo Radar Alfa"
+                    className="w-full h-full object-contain"
+                    style={{ objectPosition: "50% 42%", transform: "scale(2.2)" }}
+                  />
                 </div>
                 <div className="min-w-0">
                   <div className="font-semibold text-sm leading-tight text-foreground truncate">Radar Alfa</div>
