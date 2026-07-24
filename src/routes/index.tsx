@@ -19,11 +19,11 @@ function WelcomePage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#f4f5f7] dark:bg-zinc-950 px-4 py-16">
       {/* Radar Alfa Logo centered above the card */}
-      <div className="mb-8">
+      <div className="mb-6 px-4">
         <img
-          src="/logo_radar_alfa_v1.svg"
+          src="/logo_radar_alfa_v1.png"
           alt="Logo Radar Alfa"
-          className="w-48 h-auto"
+          className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] h-auto mx-auto"
         />
       </div>
 

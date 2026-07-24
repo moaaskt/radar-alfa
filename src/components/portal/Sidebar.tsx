@@ -49,14 +49,11 @@ export function PortalSidebar({ variant }: { variant: "coordenador" | "aluno" })
     <aside className="hidden md:flex w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground min-h-screen border-r border-sidebar-border">
       <div className="px-6 py-6 border-b border-sidebar-border">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-lg overflow-hidden shrink-0 bg-white grid place-items-center">
-            <img
-              src="/logo_radar_alfa_v1.svg"
-              alt="Logo Radar Alfa"
-              className="w-full h-full object-contain"
-              style={{ objectPosition: "50% 42%", transform: "scale(2.2)" }}
-            />
-          </div>
+          <img
+            src="/logo-radar-alfa-icon.svg"
+            alt="Ícone Radar Alfa"
+            className="h-9 w-9 shrink-0"
+          />
           <div>
             <div className="font-semibold leading-tight">Radar Alfa</div>
             <div className="text-xs text-sidebar-foreground/70">
@@ -304,14 +301,11 @@ export function PortalShell({
               </>
             ) : (
               <Link to="/" className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-lg overflow-hidden shrink-0 bg-white grid place-items-center">
-                  <img
-                    src="/logo_radar_alfa_v1.svg"
-                    alt="Logo Radar Alfa"
-                    className="w-full h-full object-contain"
-                    style={{ objectPosition: "50% 42%", transform: "scale(2.2)" }}
-                  />
-                </div>
+                <img
+                  src="/logo-radar-alfa-icon.svg"
+                  alt="Ícone Radar Alfa"
+                  className="h-8 w-8 shrink-0"
+                />
                 <div className="min-w-0">
                   <div className="font-semibold text-sm leading-tight text-foreground truncate">Radar Alfa</div>
                   <div className="text-xs text-muted-foreground leading-none mt-0.5">
